@@ -13,6 +13,8 @@ public class EventsListener implements Listener {
     @EventHandler
     public void onInventoryCloseEvent(InventoryCloseEvent e){
         Player p = (Player)e.getPlayer();
-
+        if(p.hasPermission("qataria.youuber")){
+            //rtestesteste
+        }
     }
 }
