@@ -3,6 +3,8 @@ Gift @Author: CTRL 22:41
  */
 
 import fr.h3x.gift.Main;
+import fr.h3x.gift.Utils;
+import fr.h3x.gift.obj.Gift;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +18,7 @@ public class GiftCommand implements CommandExecutor {
 
     public GiftCommand(Main plugin) {
         this.plugin = plugin;
+        plugin.getCommand("donate").setExecutor(this);
     }
 
     @Override
@@ -32,8 +35,9 @@ public class GiftCommand implements CommandExecutor {
                     Player cible = Bukkit.getPlayer(args[0]);
                     if (cible.hasPermission("Qataria.Youtubeur"))
                     {
-                        Inventory inv = Bukkit.createInventory(null, 54, "§7> §bDon pour §6" + cible.getName());
-                     //   Gift gift = new Gift(plugin,p,cible,);
+                        Gift gift = new Gift(plugin,p,cible,null);
+                        Utils.gifts.add(gift);
+                        p.openInventory(gift.donatorIventory());
                     }
                 }
             }
